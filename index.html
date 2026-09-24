@@ -1183,8 +1183,8 @@ footer{
 .faq-section{background:#f7f9fb;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
 .faq-head{max-width:720px;margin-bottom:28px;}
 .faq-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start;}
-.faq-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px;max-width:none;}
-.faq-item{border:1px solid #e0e6ed;border-radius:12px;padding:0;background:#fff;overflow:hidden;transition:.2s ease;box-shadow:0 4px 14px rgba(30,48,70,.035);}
+.faq-list{display:grid;grid-template-columns:1fr;grid-auto-rows:max-content;gap:12px;max-width:none;align-items:start;}
+.faq-item{align-self:start;border:1px solid #e0e6ed;border-radius:12px;padding:0;background:#fff;overflow:hidden;transition:.2s ease;box-shadow:0 4px 14px rgba(30,48,70,.035);}
 .faq-item:hover{border-color:#cfd9e3;box-shadow:0 8px 22px rgba(30,48,70,.06);transform:translateY(-1px);}
 .faq-q{width:100%;border:0;background:transparent;padding:17px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;cursor:pointer;font:inherit;font-weight:600;font-size:13px;line-height:1.45;color:var(--ink);}
 .faq-q span{display:flex;align-items:flex-start;gap:11px;}
@@ -1346,10 +1346,10 @@ footer{
   <div class="wrap about-grid">
     <div style="display:flex; flex-direction:column; gap:16px;">
       <div class="about-photo" style="aspect-ratio:auto; padding:22px 18px;">
-        <span class="about-photo-label" style="padding:0;"><b style="color:#fff; font-size:14px;">Hemal Chauhan</b><br>Founder — Photo placeholder</span>
+        <span class="about-photo-label" style="padding:0;"><b style="color:#fff; font-size:14px;">Hemal Chauhan</b><br>Founder</span>
       </div>
       <div class="about-photo" style="aspect-ratio:auto; padding:22px 18px;">
-        <span class="about-photo-label" style="padding:0;"><b style="color:#fff; font-size:14px;">Dwiraj Chauhan</b><br>Co-Founder — Photo placeholder</span>
+        <span class="about-photo-label" style="padding:0;"><b style="color:#fff; font-size:14px;">Dwiraj Chauhan</b><br>Co-Founder</span>
       </div>
     </div>
     <div class="about-copy">
@@ -1474,11 +1474,7 @@ footer{
   </div>
 </section>
 
-
 <!-- LIVE CASE TRACKER — AdminLTE-style workspace -->
-
-
-
 
 <section id="faq" class="section faq-section">
   <div class="wrap">
@@ -1555,8 +1551,6 @@ footer{
   </div>
 </section>
 
-
-
 <section id="contact" class="reveal">
   <div class="cta">
     <h2>Let's reduce your back-office stress.</h2>
@@ -1568,11 +1562,6 @@ footer{
     </div>
   </div>
 </section>
-
-
-
-
-
 
 <footer>
   <div class="wrap">
@@ -1612,8 +1601,14 @@ footer{
     q.addEventListener('click',()=>{
       const item = q.parentElement;
       const wasOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
-      if(!wasOpen) item.classList.add('open');
+      document.querySelectorAll('.faq-item').forEach(i=>{
+        i.classList.remove('open');
+        i.querySelector('.faq-q')?.setAttribute('aria-expanded', 'false');
+      });
+      if(!wasOpen){
+        item.classList.add('open');
+        q.setAttribute('aria-expanded', 'true');
+      }
     });
   });
 
@@ -1705,32 +1700,6 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 </script>
 
-
-
-
-
-
-
 <script>document.addEventListener('DOMContentLoaded',()=>{const s=document.getElementById('faqSearch'),r=document.getElementById('faqResultCount'),e=document.getElementById('faqNoResults'),items=[...document.querySelectorAll('.faq-accordion details')],topics=[...document.querySelectorAll('.faq-topic')];function u(){let q=(s?.value||'').toLowerCase().trim(),a=document.querySelector('.faq-topic.active')?.dataset.faqTopic||'all',n=0;items.forEach(x=>{let ok=(a==='all'||(x.dataset.faqTags||'').includes(a))&&(!q||x.textContent.toLowerCase().includes(q));x.style.display=ok?'':'none';if(ok)n++});if(r)r.textContent=n+' answer'+(n===1?'':'s');if(e)e.hidden=n!==0}topics.forEach(b=>b.onclick=()=>{topics.forEach(x=>x.classList.remove('active'));b.classList.add('active');u()});s?.addEventListener('input',u);u()});</script>
-<script>
-document.addEventListener("DOMContentLoaded", function(){
-  document.querySelectorAll(".faq-q").forEach(function(button){
-    button.addEventListener("click", function(){
-      const item=button.closest(".faq-item");
-      const open=item.classList.contains("open");
-      document.querySelectorAll(".faq-item.open").forEach(function(other){
-        if(other!==item){
-          other.classList.remove("open");
-          const b=other.querySelector(".faq-q");
-          if(b) b.setAttribute("aria-expanded","false");
-        }
-      });
-      item.classList.toggle("open", !open);
-      button.setAttribute("aria-expanded", String(!open));
-    });
-  });
-});
-</script>
-
 </body>
 </html>
