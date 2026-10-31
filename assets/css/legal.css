@@ -1154,9 +1154,131 @@ footer{
 
 /* Logo stays exactly as supplied; only surrounding page accents use the brand colors. */
 
-.legal-page-main{padding:125px 20px 80px;min-height:70vh;background:#f7f9fb;}
-.legal-back{max-width:900px;margin:0 auto 16px;}
-.legal-back a{font-size:11px;font-weight:800;color:#2563eb;text-decoration:none;}
-.legal-back a:hover{color:#12a878;}
+.legal-page-main{
+  max-width:1216px;
+  min-height:70vh;
+  margin:0 auto;
+  padding:68px 28px 88px;
+}
+.legal-back{max-width:900px;margin:0 auto 18px;}
+.legal-back a{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  color:var(--brand-blue);
+  font-size:13px;
+  font-weight:600;
+  transition:color .2s ease,transform .2s ease;
+}
+.legal-back a:hover{color:var(--brand-green-dark);transform:translateX(-2px);}
 .legal-section{border-top:0!important;background:transparent!important;padding:0!important;}
-.legal-wrap{margin:0 auto!important;}
+.legal-wrap{
+  max-width:900px;
+  margin:0 auto!important;
+  padding:clamp(26px,5vw,56px);
+  border:1px solid var(--brand-line);
+  border-radius:24px;
+  background:rgba(255,255,255,.92);
+  box-shadow:0 20px 55px rgba(13,27,46,.07);
+}
+.legal-wrap .eyebrow{margin-bottom:20px;}
+.legal-wrap h1{
+  margin:0 0 16px;
+  color:var(--brand-navy);
+  font-size:clamp(36px,5.2vw,58px);
+  line-height:1.08;
+  letter-spacing:-.045em;
+}
+.legal-wrap .legal-updated{
+  margin:0 0 30px;
+  padding-bottom:22px;
+  border-bottom:1px solid var(--brand-line);
+  color:var(--brand-muted);
+  font-size:14px;
+}
+.legal-wrap h2{
+  margin:26px 0 8px;
+  color:var(--brand-navy);
+  font-size:clamp(18px,2.1vw,21px);
+  font-weight:650;
+  line-height:1.4;
+  letter-spacing:-.02em;
+}
+.legal-wrap h2:first-of-type{margin-top:0;}
+.legal-wrap p{
+  color:#566477;
+  font-size:15px;
+  line-height:1.8;
+}
+.legal-wrap p + h2{margin-top:26px;}
+.legal-wrap p a{
+  color:var(--brand-blue-dark);
+  font-weight:600;
+  text-decoration:underline;
+  text-decoration-color:rgba(37,99,235,.3);
+  text-underline-offset:3px;
+}
+.legal-wrap p a:hover{color:var(--brand-green-dark);}
+
+@media(max-width:600px){
+  .legal-page-main{padding:42px 16px 60px;}
+  .legal-back{margin-bottom:14px;}
+  .legal-wrap{padding:25px 21px;border-radius:18px;}
+  .legal-wrap .eyebrow{margin-bottom:16px;}
+  .legal-wrap .legal-updated{margin-bottom:24px;padding-bottom:18px;}
+  .legal-wrap h2{margin-top:22px;}
+  .legal-wrap p{font-size:14px;line-height:1.75;}
+}
+
+footer .foot-brand{align-items:flex-start;flex-direction:column;gap:14px;color:#fff;}
+.footer-legal{display:flex;flex-wrap:wrap;gap:14px;}
+.footer-legal a{color:#c9d7e7;font-size:13px;font-weight:500;}
+.footer-legal a:hover{color:#58d5ff;}
+footer .foot-tag,footer .foot-col a,footer .foot-bottom{color:#b9c9dc;}
+footer .foot-col a:hover{color:#fff;}
+
+.menu-toggle{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:5px;
+  width:44px;
+  height:44px;
+  border:1px solid var(--brand-line);
+  border-radius:12px;
+  background:#fff;
+  color:var(--brand-navy);
+  cursor:pointer;
+}
+.menu-toggle span{
+  display:block;
+  width:19px;
+  height:2px;
+  border-radius:2px;
+  background:currentColor;
+  transition:transform .2s ease,opacity .2s ease;
+}
+.menu-toggle[aria-expanded="true"] span:first-child{transform:translateY(7px) rotate(45deg);}
+.menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.menu-toggle[aria-expanded="true"] span:last-child{transform:translateY(-7px) rotate(-45deg);}
+@media(max-width:860px){
+  .nav{position:relative;gap:14px;}
+  .menu-toggle{display:inline-flex;flex:none;}
+  .nav-links.open{
+    display:flex!important;
+    position:absolute;
+    left:18px;
+    right:18px;
+    top:72px;
+    flex-direction:column;
+    gap:4px;
+    padding:12px;
+    background:rgba(255,255,255,.97);
+    backdrop-filter:blur(14px);
+    border:1px solid var(--brand-line);
+    border-radius:16px;
+    box-shadow:0 20px 45px rgba(7,26,51,.14);
+  }
+  .nav-links.open a{padding:12px 13px;border-radius:10px;}
+}
